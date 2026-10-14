@@ -1,0 +1,9 @@
+{
+  "id": "clicky",
+  "name": "Clicky",
+  "icon": "IconEye",
+  "command": "python",
+  "args": ["main.py"],
+  "cwd": ".",
+  "refreshMs": 3000
+}

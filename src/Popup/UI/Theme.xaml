@@ -1,0 +1,121 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Порт Theme.swift. Числа не подобраны заново, а перенесены: панель должна
+        выглядеть и двигаться так же, как на macOS.
+    -->
+
+    <!-- Цвета: белый с прозрачностью поверх чёрного тела. -->
+    <SolidColorBrush x:Key="TextPrimary"  Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="TextSecondary" Color="#8CFFFFFF" />  <!-- 0.55 -->
+    <SolidColorBrush x:Key="TextTertiary"  Color="#52FFFFFF" />  <!-- 0.32 -->
+    <SolidColorBrush x:Key="Surface"       Color="#14FFFFFF" />  <!-- 0.08 -->
+    <SolidColorBrush x:Key="SurfaceHover"  Color="#24FFFFFF" />  <!-- 0.14 -->
+    <SolidColorBrush x:Key="Hairline"      Color="#1AFFFFFF" />  <!-- 0.10 -->
+    <SolidColorBrush x:Key="PanelFill"     Color="#FF000000" />
+
+    <FontFamily x:Key="UiFont">Segoe UI Variable Display, Segoe UI</FontFamily>
+
+    <!-- Радиусы силуэта и длительности анимаций живут в Theme.cs: их читает
+         код, который эти анимации и заводит. -->
+
+    <!--
+        Плоская кнопка без фокусной рамки — вся мелочь внутри панели.
+        Порт NotchButtonStyle.
+    -->
+    <Style x:Key="NotchButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="FontFamily" Value="{StaticResource UiFont}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Width" Value="26" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="Transparent">
+                        <Ellipse x:Name="Halo" Fill="Transparent" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Halo" Property="Fill" Value="{StaticResource SurfaceHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.55" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Кнопка-подпись: текст без круга под ним. -->
+    <Style x:Key="NotchTextButton" TargetType="Button" BasedOn="{StaticResource NotchButton}">
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Back" CornerRadius="6" Background="{StaticResource Surface}" Padding="9,3">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Back" Property="Background" Value="{StaticResource SurfaceHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.55" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Поля ввода панели: без рамки, курсор белый, фон едва заметен. -->
+    <Style x:Key="NotchTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}" />
+        <Setter Property="SelectionBrush" Value="#40FFFFFF" />
+        <Setter Property="FontFamily" Value="{StaticResource UiFont}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="AcceptsReturn" Value="True" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+
+    <!-- Полосы прокрутки внутри панели: тонкие, без кнопок, поверх содержимого. -->
+    <Style TargetType="ScrollBar">
+        <Setter Property="Width" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Track x:Name="PART_Track" IsDirectionReversed="True">
+                        <Track.Thumb>
+                            <Thumb>
+                                <Thumb.Template>
+                                    <ControlTemplate TargetType="Thumb">
+                                        <Border CornerRadius="2" Background="{StaticResource SurfaceHover}" />
+                                    </ControlTemplate>
+                                </Thumb.Template>
+                            </Thumb>
+                        </Track.Thumb>
+                    </Track>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

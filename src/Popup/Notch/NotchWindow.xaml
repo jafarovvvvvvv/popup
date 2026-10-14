@@ -1,0 +1,106 @@
+<Window x:Class="Popup.Notch.NotchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:notch="clr-namespace:Popup.Notch"
+        xmlns:ui="clr-namespace:Popup.UI"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        Topmost="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        AllowDrop="True"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Ideal"
+        FontFamily="{StaticResource UiFont}">
+
+    <!--
+        Окно шире и выше тела панели: в запасе по бокам живут вогнутые плечи, а
+        снизу — тень. Само тело прижато к верхнему краю по центру.
+    -->
+    <Grid x:Name="Root" Background="Transparent">
+        <Grid x:Name="PanelBody"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Width="180" Height="6">
+
+            <!-- Силуэт. Шире тела на TopRadius с каждой стороны — иначе плечи
+                 оказались бы срезаны. -->
+            <notch:NotchShape x:Name="Shape"
+                              Fill="{StaticResource PanelFill}"
+                              TopRadius="6" BottomRadius="9"
+                              Width="192"
+                              Height="{Binding ActualHeight, ElementName=PanelBody}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Top">
+                <notch:NotchShape.Effect>
+                    <DropShadowEffect x:Name="Shadow" BlurRadius="18" ShadowDepth="8"
+                                      Direction="270" Color="Black" Opacity="0" />
+                </notch:NotchShape.Effect>
+            </notch:NotchShape>
+
+            <!-- Полоска живой активности. Отдельным слоем, а не внутри шапки:
+                 в свёрнутом виде она и есть всё тело панели, и делить его с
+                 раскладкой раскрытой панели ей незачем. -->
+            <ContentControl x:Name="ActivityHost"
+                            Margin="14,0,14,0"
+                            Visibility="Collapsed" />
+
+            <DockPanel x:Name="Body" ClipToBounds="True">
+
+                <!--
+                    Шапка лежит у самого верха экрана. Ничего нажимаемого здесь
+                    нет: переключатель вкладок — в рейле ниже. Пустая колонка по
+                    центру шириной со свёрнутую полоску оставлена нарочно — это
+                    место, откуда панель разворачивается, и заголовок, налезающий
+                    на него, разрывал бы связь между двумя состояниями.
+                -->
+                <Grid x:Name="Header" DockPanel.Dock="Top" Height="24" Opacity="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="212" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Середина шапки — то самое место, откуда панель
+                         разворачивается. Пока идёт запись, здесь стоит та же
+                         полоска, что была видна свёрнутой, только с кнопками:
+                         так раскрытие не отнимает у человека то, на что он
+                         смотрел секунду назад. -->
+                    <ContentControl x:Name="HeaderActivity"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center" />
+
+                    <TextBlock x:Name="TitleText"
+                               Grid.Column="0"
+                               Margin="16,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="9"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextTertiary}" />
+
+                    <ContentControl x:Name="HeaderTrailing"
+                                    Grid.Column="2"
+                                    Margin="0,0,16,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid x:Name="ContentArea" Opacity="0" Margin="14,0,14,14">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ContentControl x:Name="LeftRailHost" Grid.Column="0" />
+                    <ui:PaneHost x:Name="Panes" Grid.Column="1" Margin="14,0,14,0" />
+                    <ContentControl x:Name="RightRailHost" Grid.Column="2" />
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

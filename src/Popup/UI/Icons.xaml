@@ -1,0 +1,82 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Иконки нарисованы здесь, а не взяты из шрифта.
+
+        У оригинала это SF Symbols — набор, которого в Windows нет, а подбирать
+        приблизительные соответствия в Segoe Fluent значит зависеть от версии
+        системы и от того, какие глифы в ней вообще есть. Пятнадцать контуров в
+        сетке 16x16 стоят дешевле, всегда выглядят одинаково и правятся здесь же.
+
+        Контурные иконки рисуются Stroke (толщина 1.3), сплошные — Fill;
+        какая из них какая, решает место использования.
+    -->
+
+    <!-- Вкладки -->
+
+    <PathGeometry x:Key="IconMusic"
+                  Figures="M6,11.5V3.4L13,1.9V10 M6,11.5a2,1.7 0 1 0 -4,0 a2,1.7 0 1 0 4,0 M13,10a2,1.7 0 1 0 -4,0 a2,1.7 0 1 0 4,0" />
+
+    <PathGeometry x:Key="IconShelf"
+                  Figures="M2,9.4L3.7,3.4H12.3L14,9.4V12.3A1.2,1.2 0 0 1 12.8,13.5H3.2A1.2,1.2 0 0 1 2,12.3Z M2,9.4H5.7L6.7,11.1H9.3L10.3,9.4H14" />
+
+    <PathGeometry x:Key="IconClipboard"
+                  Figures="M6,2.9H4.6A1.3,1.3 0 0 0 3.3,4.2V13A1.3,1.3 0 0 0 4.6,14.3H11.4A1.3,1.3 0 0 0 12.7,13V4.2A1.3,1.3 0 0 0 11.4,2.9H10 M6,4.3V2.8A1,1 0 0 1 7,1.8H9A1,1 0 0 1 10,2.8V4.3Z M5.9,7.6H10.1 M5.9,10.4H10.1" />
+
+    <PathGeometry x:Key="IconPin"
+                  Figures="M5.3,2.2H10.7 M6.3,2.2V6.9L4.4,9H11.6L9.7,6.9V2.2 M8,9V14" />
+
+    <PathGeometry x:Key="IconKey"
+                  Figures="M5.2,6.2a2.9,2.9 0 1 0 0.01,0Z M7.3,8.3L13.6,14.6 M11.2,12.2L12.9,10.5 M9.6,10.6L10.9,9.3" />
+
+    <PathGeometry x:Key="IconCalendar"
+                  Figures="M3,4.6A1.3,1.3 0 0 1 4.3,3.3H11.7A1.3,1.3 0 0 1 13,4.6V12.2A1.3,1.3 0 0 1 11.7,13.5H4.3A1.3,1.3 0 0 1 3,12.2Z M3,6.7H13 M5.6,2V4.5 M10.4,2V4.5" />
+
+    <PathGeometry x:Key="IconTranslate"
+                  Figures="M2,8A6,6 0 0 1 14,8A6,6 0 0 1 2,8Z M2,8H14 M8,2C5.3,4.2 5.3,11.8 8,14 M8,2C10.7,4.2 10.7,11.8 8,14" />
+
+    <PathGeometry x:Key="IconNote"
+                  Figures="M3.6,3.1A1.3,1.3 0 0 1 4.9,1.8H9.4L12.4,4.8V12.9A1.3,1.3 0 0 1 11.1,14.2H4.9A1.3,1.3 0 0 1 3.6,12.9Z M9.4,1.9V4.8H12.3 M6,8.4H10 M6,11H10" />
+
+    <PathGeometry x:Key="IconDev"
+                  Figures="M5.8,4.7L2,8L5.8,11.3 M10.2,4.7L14,8L10.2,11.3 M9.4,2.9L6.6,13.1" />
+
+    <PathGeometry x:Key="IconPlugin"
+                  Figures="M6,1.8V5.4 M10,1.8V5.4 M4,5.4H12V8.6A4,4 0 0 1 4,8.6Z M8,12.6V14.4" />
+
+    <!-- Управление проигрыванием (сплошные) -->
+
+    <PathGeometry x:Key="IconPlay" Figures="M5,3.1L12.6,8L5,12.9Z" />
+    <PathGeometry x:Key="IconPause" Figures="M5.4,3.3H7.3V12.7H5.4Z M8.7,3.3H10.6V12.7H8.7Z" />
+    <PathGeometry x:Key="IconNext" Figures="M4,3.3L10.4,8L4,12.7Z M11.3,3.3H12.8V12.7H11.3Z" />
+    <PathGeometry x:Key="IconPrev" Figures="M12,3.3L5.6,8L12,12.7Z M3.2,3.3H4.7V12.7H3.2Z" />
+
+    <!-- Мелочь -->
+
+    <PathGeometry x:Key="IconEye"
+                  Figures="M1.8,8C3.6,4.8 5.8,3.5 8,3.5C10.2,3.5 12.4,4.8 14.2,8C12.4,11.2 10.2,12.5 8,12.5C5.8,12.5 3.6,11.2 1.8,8Z M8,5.9a2.1,2.1 0 1 0 0,4.2 a2.1,2.1 0 1 0 0,-4.2Z" />
+
+    <PathGeometry x:Key="IconEyeOff"
+                  Figures="M1.8,8C3.6,4.8 5.8,3.5 8,3.5C10.2,3.5 12.4,4.8 14.2,8C12.4,11.2 10.2,12.5 8,12.5C5.8,12.5 3.6,11.2 1.8,8Z M8,5.9a2.1,2.1 0 1 0 0,4.2 a2.1,2.1 0 1 0 0,-4.2Z M2.6,2.6L13.4,13.4" />
+
+    <PathGeometry x:Key="IconClose" Figures="M4.3,4.3L11.7,11.7 M11.7,4.3L4.3,11.7" />
+    <PathGeometry x:Key="IconPlus" Figures="M8,3.6V12.4 M3.6,8H12.4" />
+    <PathGeometry x:Key="IconTrash"
+                  Figures="M3.4,4.6H12.6 M6.4,4.6V3.2A0.9,0.9 0 0 1 7.3,2.3H8.7A0.9,0.9 0 0 1 9.6,3.2V4.6 M4.7,4.6V12.9A1,1 0 0 0 5.7,13.9H10.3A1,1 0 0 0 11.3,12.9V4.6" />
+
+    <PathGeometry x:Key="IconCopy"
+                  Figures="M5.6,5.6H12.3A0.9,0.9 0 0 1 13.2,6.5V13.2A0.9,0.9 0 0 1 12.3,14.1H5.6A0.9,0.9 0 0 1 4.7,13.2V6.5A0.9,0.9 0 0 1 5.6,5.6Z M2.8,10.4A0.9,0.9 0 0 1 1.9,9.5V2.8A0.9,0.9 0 0 1 2.8,1.9H9.5A0.9,0.9 0 0 1 10.4,2.8" />
+
+    <PathGeometry x:Key="IconLink"
+                  Figures="M6.8,9.2A2.7,2.7 0 0 0 10.6,9.2L12.8,7A2.7,2.7 0 0 0 9,3.2L7.9,4.3 M9.2,6.8A2.7,2.7 0 0 0 5.4,6.8L3.2,9A2.7,2.7 0 0 0 7,12.8L8.1,11.7" />
+
+    <PathGeometry x:Key="IconRefresh"
+                  Figures="M13.2,7.2A5.3,5.3 0 1 0 12.4,11 M13.4,3.2V7.4H9.2" />
+
+    <PathGeometry x:Key="IconFolder"
+                  Figures="M2.2,4.6A1.2,1.2 0 0 1 3.4,3.4H6.4L7.9,5.2H12.6A1.2,1.2 0 0 1 13.8,6.4V11.8A1.2,1.2 0 0 1 12.6,13H3.4A1.2,1.2 0 0 1 2.2,11.8Z" />
+
+    <PathGeometry x:Key="IconSend" Figures="M2.2,13.8L13.8,8L2.2,2.2L4.5,8Z M4.5,8H13.8" />
+
+</ResourceDictionary>

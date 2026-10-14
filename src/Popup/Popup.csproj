@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- Версия Windows в таргете — это то, что включает проекцию WinRT в C#.
+         Без неё нет Windows.Media.Control, на котором держится вкладка музыки. -->
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <!-- Набор using-ов задан вручную в GlobalUsings.cs — почему, написано там. -->
+    <ImplicitUsings>disable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>Popup</AssemblyName>
+    <RootNamespace>Popup</RootNamespace>
+    <!-- Панель сама решает, на каком мониторе и в каком масштабе она живёт;
+         системное растягивание испортило бы и геометрию, и текст. -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- WFO0003 требует настраивать DPI через WinForms-свойство. Здесь WinForms
+         только ради иконки в трее, а окно панели — WPF, которому осведомлённость
+         о DPI даёт именно манифест. -->
+    <NoWarn>$(NoWarn);WFO0003</NoWarn>
+  </PropertyGroup>
+
+  <!-- Плагины, которые едут в комплекте. При первом запуске они копируются в
+       %APPDATA%\Popup\plugins, где их уже можно править — см. PluginHost.Seed. -->
+  <ItemGroup>
+    <None Include="..\..\plugins\**\*" LinkBase="plugins" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

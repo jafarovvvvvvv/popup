@@ -1,0 +1,9 @@
+{
+  "id": "homeserver",
+  "name": "Сервер",
+  "icon": "IconFolder",
+  "command": "python",
+  "args": ["main.py"],
+  "cwd": ".",
+  "refreshMs": 15000
+}

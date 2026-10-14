@@ -1,0 +1,9 @@
+{
+  "id": "localwhisper",
+  "name": "Whisper",
+  "icon": "IconPlugin",
+  "command": "python",
+  "args": ["main.py"],
+  "cwd": ".",
+  "refreshMs": 3000
+}
